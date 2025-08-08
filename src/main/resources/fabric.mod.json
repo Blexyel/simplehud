@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "better-hud",
+	"version": "${version}",
+	"name": "better-hud",
+	"description": "Adds simple HUD at top left, thats it",
+	"authors": [
+		"Blexyel"
+	],
+	"contact": {
+		"sources": "https://github.com/Blexyel/betterhud"
+	},
+	"license": "GNU GPLv3",
+	"icon": "assets/better-hud/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"wtf.blexyel.betterhud.Betterhud"
+		],
+	    "modmenu": [
+     	   "wtf.blexyel.betterhud.ModMenu"
+    	]
+	},
+	"mixins": [
+		"better-hud.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.4",
+		"minecraft": ">=${minver} <=${maxver}",
+		"java": ">=17",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}
