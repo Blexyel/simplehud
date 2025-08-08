@@ -1,4 +1,4 @@
-package wtf.blexyel.betterhud;
+package wtf.blexyel.simplehud;
 
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
@@ -8,9 +8,9 @@ import net.minecraft.util.Identifier;
 
 public class Config {
     public static ConfigClassHandler<Config> HANDLER = ConfigClassHandler.createBuilder(Config.class)
-            .id(Identifier.tryParse("betterhud:config"))
+            .id(Identifier.tryParse("simplehud:config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
-                    .setPath(FabricLoader.getInstance().getConfigDir().resolve("betterhud.json5"))
+                    .setPath(FabricLoader.getInstance().getConfigDir().resolve("simplehud.json5"))
                     .appendGsonBuilder(builder -> builder.setPrettyPrinting())
                     .setJson5(true)
                     .build())

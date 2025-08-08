@@ -1,10 +1,10 @@
-package wtf.blexyel.betterhud.mixin;
+package wtf.blexyel.simplehud.mixin;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.RenderTickCounter;
-import wtf.blexyel.betterhud.BetterHudStuff;
+import wtf.blexyel.simplehud.SimpleHudStuff;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +21,7 @@ public class InGameHudMixin {
 
 	@Inject(method = "render", at = @At("TAIL"))
 	public void render(DrawContext drawContext, RenderTickCounter tickCounter, CallbackInfo ci) {
-		BetterHudStuff betterHudStuff = new BetterHudStuff();
-		betterHudStuff.getEntry(drawContext, client);
+		SimpleHudStuff simpleHudStuff = new SimpleHudStuff();
+		simpleHudStuff.getEntry(drawContext, client);
 	}
 }

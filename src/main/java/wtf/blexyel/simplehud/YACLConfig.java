@@ -1,4 +1,4 @@
-package wtf.blexyel.betterhud;
+package wtf.blexyel.simplehud;
 
 import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
@@ -12,7 +12,7 @@ public class YACLConfig {
     public static Screen create(Screen parent) {
         Config.HANDLER.load();
         return YetAnotherConfigLib.createBuilder()
-                .title(Text.literal("Better HUD Config"))
+                .title(Text.literal("Simple HUD Config"))
                 .category(ConfigCategory.createBuilder()
                         .name(Text.literal("General"))
                         .option(Option.<Boolean>createBuilder()

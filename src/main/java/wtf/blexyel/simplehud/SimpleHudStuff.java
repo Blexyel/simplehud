@@ -1,9 +1,9 @@
-package wtf.blexyel.betterhud;
+package wtf.blexyel.simplehud;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 
-public class BetterHudStuff {
+public class SimpleHudStuff {
     public void getEntry(DrawContext context, MinecraftClient client) {
         boolean rfps = Config.fps;
         boolean rcoords = Config.coords;
@@ -14,9 +14,9 @@ public class BetterHudStuff {
         int fps = client.getCurrentFps();
         String coords = "XYZ: " + (int) client.player.getX() + " " + (int) client.player.getY() + " "
                 + (int) client.player.getZ();
-        int ping = BetterHudUtils.getPing(client);
-        String conn = BetterHudUtils.getConnectionInfo(client);
-        String biome = BetterHudUtils.getBiome(client);
+        int ping = SimpleHudUtils.getPing(client);
+        String conn = SimpleHudUtils.getConnectionInfo(client);
+        String biome = SimpleHudUtils.getBiome(client);
 
         if (!rfps && !rcoords && !rping && !rconn && !rbiome)
             return;

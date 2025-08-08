@@ -1,10 +1,10 @@
-package wtf.blexyel.betterhud;
+package wtf.blexyel.simplehud;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.util.math.BlockPos;
 
-public class BetterHudUtils {
+public class SimpleHudUtils {
 
     private static long lastPing = System.currentTimeMillis();
     private static int PING = 0;

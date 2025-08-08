@@ -1,4 +1,4 @@
-package wtf.blexyel.betterhud;
+package wtf.blexyel.simplehud;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
