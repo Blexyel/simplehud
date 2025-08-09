@@ -31,6 +31,8 @@ public class Config {
 
   @SerialEntry public static boolean biome = true;
 
+  @SerialEntry public static boolean chunk = false;
+
   // ### END TOGGLES ### //
 
   // ### START INDICES ### //
@@ -39,11 +41,13 @@ public class Config {
 
   @SerialEntry public static int coordsindex = 1;
 
-  @SerialEntry public static int pingindex = 2;
+  @SerialEntry public static int chunkindex = 2;
 
-  @SerialEntry public static int connindex = 3;
+  @SerialEntry public static int pingindex = 3;
 
-  @SerialEntry public static int biomeindex = 4;
+  @SerialEntry public static int connindex = 4;
+
+  @SerialEntry public static int biomeindex = 5;
 
   // ### END INDICES ### //
 

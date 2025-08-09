@@ -41,6 +41,15 @@ public class YACLConfig {
                         .build())
                 .option(
                     Option.<Boolean>createBuilder()
+                        .name(Text.literal("Chunk Coordinates"))
+                        .description(
+                            OptionDescription.of(
+                                Text.literal("Shows the current chunk coordinates")))
+                        .binding(false, () -> Config.chunk, newVal -> Config.chunk = newVal)
+                        .controller(TickBoxControllerBuilder::create)
+                        .build())
+                .option(
+                    Option.<Boolean>createBuilder()
                         .name(Text.literal("Ping"))
                         .description(OptionDescription.of(Text.literal("Shows the current ping")))
                         .binding(true, () -> Config.ping, newVal -> Config.ping = newVal)
@@ -88,11 +97,21 @@ public class YACLConfig {
                         .build())
                 .option(
                     Option.<Integer>createBuilder()
+                        .name(Text.literal("Chunk Coordinates Position Index"))
+                        .description(
+                            OptionDescription.of(
+                                Text.literal(
+                                    "Sets the position index for the Chunk coordinates display")))
+                        .binding(2, () -> Config.chunkindex, v -> Config.chunkindex = v)
+                        .controller(option -> () -> new CyclingListController<>(option, indices))
+                        .build())
+                .option(
+                    Option.<Integer>createBuilder()
                         .name(Text.literal("Ping Position Index"))
                         .description(
                             OptionDescription.of(
                                 Text.literal("Sets the position index for the Ping display")))
-                        .binding(2, () -> Config.pingindex, v -> Config.pingindex = v)
+                        .binding(3, () -> Config.pingindex, v -> Config.pingindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .option(
@@ -102,7 +121,7 @@ public class YACLConfig {
                             OptionDescription.of(
                                 Text.literal(
                                     "Sets the position index for the Connection/IP display")))
-                        .binding(3, () -> Config.connindex, v -> Config.connindex = v)
+                        .binding(4, () -> Config.connindex, v -> Config.connindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .option(
@@ -111,7 +130,7 @@ public class YACLConfig {
                         .description(
                             OptionDescription.of(
                                 Text.literal("Sets the position index for the Biome display")))
-                        .binding(4, () -> Config.biomeindex, v -> Config.biomeindex = v)
+                        .binding(5, () -> Config.biomeindex, v -> Config.biomeindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .option(

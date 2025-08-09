@@ -12,18 +12,19 @@ public class SimpleHudStuff {
   public void getEntry(DrawContext context, MinecraftClient client) {
     boolean rfps = Config.fps;
     boolean rcoords = Config.coords;
+    boolean rchunk = Config.chunk;
     boolean rping = Config.ping;
     boolean rconn = Config.conn;
     boolean rbiome = Config.biome;
 
     int fps = client.getCurrentFps();
-    String coords =
-        "XYZ: "
-            + (int) client.player.getX()
-            + " "
-            + (int) client.player.getY()
-            + " "
-            + (int) client.player.getZ();
+    String coordsx = String.valueOf((int) client.player.getBlockPos().getX());
+    String coordsy = String.valueOf((int) client.player.getBlockPos().getY());
+    String coordsz = String.valueOf((int) client.player.getBlockPos().getZ());
+    String coords = String.format("XYZ: %s %s %s", coordsx, coordsy, coordsz);
+    String chunkcoordsx = String.valueOf((int) client.player.getChunkPos().x);
+    String chunkcoordsz = String.valueOf((int) client.player.getChunkPos().z);
+    String chunkcoords = String.format("Chunk: %s %s", chunkcoordsx, chunkcoordsz);
     int ping = SimpleHudUtils.getPing(client);
     String conn = SimpleHudUtils.getConnectionInfo(client);
     String biome = SimpleHudUtils.getBiome(client);
@@ -37,6 +38,7 @@ public class SimpleHudStuff {
     List<Integer> indices = new ArrayList<>();
     if (rfps) indices.add(Config.fpsindex);
     if (rcoords) indices.add(Config.coordsindex);
+    if (rchunk) indices.add(Config.chunkindex);
     if (rping) indices.add(Config.pingindex);
     if (rconn) indices.add(Config.connindex);
     if (rbiome) indices.add(Config.biomeindex);
@@ -57,6 +59,14 @@ public class SimpleHudStuff {
     if (rcoords) {
       int y = baseY + spacing * Config.coordsindex;
       render(context, client, coords, y, 0xFFFFFFFF);
+    }
+    if (rcoords) {
+      int y = baseY + spacing * Config.coordsindex;
+      render(context, client, coords, y, 0xFFFFFFFF);
+    }
+    if (rchunk) {
+      int y = baseY + spacing * Config.chunkindex;
+      render(context, client, chunkcoords, y, 0xFFFFFFFF);
     }
     if (rping) {
       int y = baseY + spacing * Config.pingindex;
