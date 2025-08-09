@@ -8,7 +8,6 @@ import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.gui.controllers.cycling.CyclingListController;
-
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -118,10 +117,12 @@ public class YACLConfig {
                 .option(
                     Option.<Integer>createBuilder()
                         .name(Text.literal("Horizontal Position"))
-                        .description(OptionDescription.of(Text.literal("Sets the horizontal position of the HUD elements")))
+                        .description(
+                            OptionDescription.of(
+                                Text.literal("Sets the horizontal position of the HUD elements")))
                         .binding(0, () -> Config.horizontalpos, v -> Config.horizontalpos = v)
-                        .controller(opt -> IntegerSliderControllerBuilder.create(opt)
-                                                .range(0, 100).step(1))
+                        .controller(
+                            opt -> IntegerSliderControllerBuilder.create(opt).range(0, 100).step(1))
                         .build())
                 .build())
         // ### END POSITIONS ### //
