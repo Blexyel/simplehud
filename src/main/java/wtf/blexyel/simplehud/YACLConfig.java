@@ -83,7 +83,7 @@ public class YACLConfig {
                             OptionDescription.of(
                                 Text.literal(
                                     "Sets the position index for the coordinates display")))
-                        .binding(0, () -> Config.coordsindex, v -> Config.coordsindex = v)
+                        .binding(1, () -> Config.coordsindex, v -> Config.coordsindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .option(
@@ -92,7 +92,7 @@ public class YACLConfig {
                         .description(
                             OptionDescription.of(
                                 Text.literal("Sets the position index for the Ping display")))
-                        .binding(0, () -> Config.pingindex, v -> Config.pingindex = v)
+                        .binding(2, () -> Config.pingindex, v -> Config.pingindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .option(
@@ -102,7 +102,7 @@ public class YACLConfig {
                             OptionDescription.of(
                                 Text.literal(
                                     "Sets the position index for the Connection/IP display")))
-                        .binding(0, () -> Config.connindex, v -> Config.connindex = v)
+                        .binding(3, () -> Config.connindex, v -> Config.connindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .option(
@@ -111,7 +111,7 @@ public class YACLConfig {
                         .description(
                             OptionDescription.of(
                                 Text.literal("Sets the position index for the Biome display")))
-                        .binding(0, () -> Config.biomeindex, v -> Config.biomeindex = v)
+                        .binding(4, () -> Config.biomeindex, v -> Config.biomeindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
                         .build())
                 .build())
