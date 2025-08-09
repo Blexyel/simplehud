@@ -8,13 +8,13 @@ Well look no further as you can now have this!!
 - Server IP
 - Biome
 - Ping
+- Customization (moving of individual elements atm)
 
 There's not really anything else to say, except for that you can toggle everything in the config (modmenu required to access config screen, moving the hud is not supported yet™)
 
 
 ## Planned features:
 - Moving HUD position
-- more customization (position of individual elements)
 - colors (possibly with custom conditions)
 
 
