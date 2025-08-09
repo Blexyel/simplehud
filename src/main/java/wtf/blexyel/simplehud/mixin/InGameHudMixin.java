@@ -21,6 +21,8 @@ public class InGameHudMixin {
 
 	@Inject(method = "render", at = @At("TAIL"))
 	public void render(DrawContext drawContext, RenderTickCounter tickCounter, CallbackInfo ci) {
+		if (MinecraftClient.getInstance().options.hudHidden)
+			return;
 		SimpleHudStuff simpleHudStuff = new SimpleHudStuff();
 		simpleHudStuff.getEntry(drawContext, client);
 	}

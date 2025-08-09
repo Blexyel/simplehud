@@ -15,7 +15,7 @@
 	"environment": "client",
 	"entrypoints": {
 		"main": [
-			"wtf.blexyel.simplehud.Betterhud"
+			"wtf.blexyel.simplehud.SimpleHud"
 		],
 	    "modmenu": [
      	   "wtf.blexyel.simplehud.ModMenu"
