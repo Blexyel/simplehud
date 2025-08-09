@@ -48,9 +48,9 @@ public class YACLConfig {
                         .build())
                 .option(
                     Option.<Boolean>createBuilder()
-                        .name(Text.literal("Connection"))
+                        .name(Text.literal("Connection/IP"))
                         .description(
-                            OptionDescription.of(Text.literal("Shows the current connection")))
+                            OptionDescription.of(Text.literal("Shows the current connection/IP")))
                         .binding(Config.conn, () -> Config.conn, newVal -> Config.conn = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
@@ -128,7 +128,7 @@ public class YACLConfig {
     int count = 0;
     for (Field field : Config.class.getDeclaredFields()) {
       if (field.isAnnotationPresent(SerialEntry.class)) {
-        if (!field.getName().toLowerCase().contains("index")) {
+        if (field.getName().toLowerCase().contains("index")) {
           count++;
         }
       }

@@ -20,6 +20,7 @@ public class Config {
           .build();
 
   // ### START TOGGLES ### //
+
   @SerialEntry public static boolean fps = true;
 
   @SerialEntry public static boolean coords = true;
@@ -29,6 +30,7 @@ public class Config {
   @SerialEntry public static boolean conn = true;
 
   @SerialEntry public static boolean biome = true;
+
   // ### END TOGGLES ### //
 
   // ### START INDICES ### //
@@ -42,5 +44,6 @@ public class Config {
   @SerialEntry public static int connindex = 3;
 
   @SerialEntry public static int biomeindex = 4;
+
   // ### END INDICES ### //
 }

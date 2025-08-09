@@ -12,6 +12,12 @@ spotless {
     }
 }
 
+tasks.register('fmt') {
+    group = 'formatting'
+    description = 'Formats the code using Spotless.'
+    dependsOn 'spotlessApply'
+}
+
 if (project.hasProperty('useCustomProps') && project.useCustomProps.toBoolean()) {
     def propsFile = file('gradle.properties.1.21.5')
     if (propsFile.exists()) {
