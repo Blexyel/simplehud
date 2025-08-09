@@ -46,4 +46,10 @@ public class Config {
   @SerialEntry public static int biomeindex = 4;
 
   // ### END INDICES ### //
+
+  // ### START SLIDERVAL ### //
+
+  @SerialEntry public static int horizontalpos = 0;
+
+  // ### END SLIDERVAL ### //
 }

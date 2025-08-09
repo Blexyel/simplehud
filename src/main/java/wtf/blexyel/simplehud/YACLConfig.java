@@ -4,9 +4,11 @@ import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.gui.controllers.cycling.CyclingListController;
+
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +29,7 @@ public class YACLConfig {
                     Option.<Boolean>createBuilder()
                         .name(Text.literal("FPS"))
                         .description(OptionDescription.of(Text.literal("Shows the current FPS")))
-                        .binding(Config.fps, () -> Config.fps, newVal -> Config.fps = newVal)
+                        .binding(true, () -> Config.fps, newVal -> Config.fps = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
                 .option(
@@ -35,15 +37,14 @@ public class YACLConfig {
                         .name(Text.literal("Coordinates"))
                         .description(
                             OptionDescription.of(Text.literal("Shows the current coordinates")))
-                        .binding(
-                            Config.coords, () -> Config.coords, newVal -> Config.coords = newVal)
+                        .binding(true, () -> Config.coords, newVal -> Config.coords = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
                 .option(
                     Option.<Boolean>createBuilder()
                         .name(Text.literal("Ping"))
                         .description(OptionDescription.of(Text.literal("Shows the current ping")))
-                        .binding(Config.ping, () -> Config.ping, newVal -> Config.ping = newVal)
+                        .binding(true, () -> Config.ping, newVal -> Config.ping = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
                 .option(
@@ -51,14 +52,14 @@ public class YACLConfig {
                         .name(Text.literal("Connection/IP"))
                         .description(
                             OptionDescription.of(Text.literal("Shows the current connection/IP")))
-                        .binding(Config.conn, () -> Config.conn, newVal -> Config.conn = newVal)
+                        .binding(true, () -> Config.conn, newVal -> Config.conn = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
                 .option(
                     Option.<Boolean>createBuilder()
                         .name(Text.literal("Biome"))
                         .description(OptionDescription.of(Text.literal("Shows the current biome")))
-                        .binding(Config.biome, () -> Config.biome, newVal -> Config.biome = newVal)
+                        .binding(true, () -> Config.biome, newVal -> Config.biome = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
                 .build())
@@ -66,7 +67,7 @@ public class YACLConfig {
         // ### START POSITIONS ### //
         .category(
             ConfigCategory.createBuilder()
-                .name(Text.literal("Positions: 0 is top, x is bottom."))
+                .name(Text.literal("Positions"))
                 .option(
                     Option.<Integer>createBuilder()
                         .name(Text.literal("FPS Position Index"))
@@ -113,6 +114,14 @@ public class YACLConfig {
                                 Text.literal("Sets the position index for the Biome display")))
                         .binding(4, () -> Config.biomeindex, v -> Config.biomeindex = v)
                         .controller(option -> () -> new CyclingListController<>(option, indices))
+                        .build())
+                .option(
+                    Option.<Integer>createBuilder()
+                        .name(Text.literal("Horizontal Position"))
+                        .description(OptionDescription.of(Text.literal("Sets the horizontal position of the HUD elements")))
+                        .binding(0, () -> Config.horizontalpos, v -> Config.horizontalpos = v)
+                        .controller(opt -> IntegerSliderControllerBuilder.create(opt)
+                                                .range(0, 100).step(1))
                         .build())
                 .build())
         // ### END POSITIONS ### //

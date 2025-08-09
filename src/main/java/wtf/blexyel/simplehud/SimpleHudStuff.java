@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.math.MathHelper;
 
 public class SimpleHudStuff {
   public void getEntry(DrawContext context, MinecraftClient client) {
@@ -72,6 +73,18 @@ public class SimpleHudStuff {
   }
 
   public void render(DrawContext context, MinecraftClient client, String text, int y, int color) {
-    context.drawText(client.textRenderer, text, 5, y, color, true);
+    int sliderValue = Config.horizontalpos;
+
+    sliderValue = MathHelper.clamp(sliderValue, 0, 100);
+
+    int scaledWidth = client.getWindow().getScaledWidth();
+    int textWidth = client.textRenderer.getWidth(text);
+
+    int leftBound = 5;
+    int rightBound = scaledWidth - textWidth - 5;
+
+    int pos = leftBound + (rightBound - leftBound) * sliderValue / 100;
+
+    context.drawText(client.textRenderer, text, pos, y, color, true);
   }
 }
