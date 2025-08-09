@@ -7,27 +7,40 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 
 public class Config {
-    public static ConfigClassHandler<Config> HANDLER = ConfigClassHandler.createBuilder(Config.class)
-            .id(Identifier.tryParse("simplehud:config"))
-            .serializer(config -> GsonConfigSerializerBuilder.create(config)
-                    .setPath(FabricLoader.getInstance().getConfigDir().resolve("simplehud.json5"))
-                    .appendGsonBuilder(builder -> builder.setPrettyPrinting())
-                    .setJson5(true)
-                    .build())
-            .build();
+  public static final ConfigClassHandler<Config> HANDLER =
+      ConfigClassHandler.createBuilder(Config.class)
+          .id(Identifier.tryParse("simplehud:config"))
+          .serializer(
+              config ->
+                  GsonConfigSerializerBuilder.create(config)
+                      .setPath(FabricLoader.getInstance().getConfigDir().resolve("simplehud.json5"))
+                      .appendGsonBuilder(builder -> builder.setPrettyPrinting())
+                      .setJson5(true)
+                      .build())
+          .build();
 
-    @SerialEntry
-    public static boolean fps = true;
+  // ### START TOGGLES ### //
+  @SerialEntry public static boolean fps = true;
 
-    @SerialEntry
-    public static boolean coords = true;
+  @SerialEntry public static boolean coords = true;
 
-    @SerialEntry
-    public static boolean ping = true;
+  @SerialEntry public static boolean ping = true;
 
-    @SerialEntry
-    public static boolean conn = true;
+  @SerialEntry public static boolean conn = true;
 
-    @SerialEntry
-    public static boolean biome = true;
+  @SerialEntry public static boolean biome = true;
+  // ### END TOGGLES ### //
+
+  // ### START INDICES ### //
+
+  @SerialEntry public static int fpsindex = 0;
+
+  @SerialEntry public static int coordsindex = 1;
+
+  @SerialEntry public static int pingindex = 2;
+
+  @SerialEntry public static int connindex = 3;
+
+  @SerialEntry public static int biomeindex = 4;
+  // ### END INDICES ### //
 }

@@ -1,6 +1,15 @@
 plugins {
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id 'java'
+    id 'com.diffplug.spotless' version '7.2.1'
+}
+
+spotless {
+    java {
+        googleJavaFormat('1.28.0')  // specify the version of google-java-format
+		target 'src/**/*.java'       // files to format
+    }
 }
 
 if (project.hasProperty('useCustomProps') && project.useCustomProps.toBoolean()) {
