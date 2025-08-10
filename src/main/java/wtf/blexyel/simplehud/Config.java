@@ -31,7 +31,7 @@ public class Config {
 
   @SerialEntry public static boolean biome = true;
 
-  @SerialEntry public static boolean chunk = false;
+  @SerialEntry public static boolean chunk = true;
 
   // ### END TOGGLES ### //
 

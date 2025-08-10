@@ -45,7 +45,7 @@ public class YACLConfig {
                         .description(
                             OptionDescription.of(
                                 Text.literal("Shows the current chunk coordinates")))
-                        .binding(false, () -> Config.chunk, newVal -> Config.chunk = newVal)
+                        .binding(true, () -> Config.chunk, newVal -> Config.chunk = newVal)
                         .controller(TickBoxControllerBuilder::create)
                         .build())
                 .option(
