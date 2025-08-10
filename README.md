@@ -9,12 +9,9 @@ Well look no further as you can now have this!!
 - Biome
 - Ping
 - Position Customization
+- You can make everything™ gay now
 
 There's not really anything else to say, except for that you can toggle everything in the config (modmenu required to access config screen, moving the hud is not supported yet™)
-
-
-## Planned features:
-- colors (possibly with custom conditions)
 
 
 #### For Developers
