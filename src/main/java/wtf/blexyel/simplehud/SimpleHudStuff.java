@@ -18,14 +18,26 @@ public class SimpleHudStuff {
     boolean rbiome = Config.biome;
 
     int fps = client.getCurrentFps();
+    String fpsColor = (Config.fpscolor) ? (fps <= 30 ? "§c" : fps < 60 ? "§e" : "§a") : "";
+    String fpsString = "FPS: " + fpsColor + fps;
     String coordsx = String.valueOf((int) client.player.getBlockPos().getX());
     String coordsy = String.valueOf((int) client.player.getBlockPos().getY());
     String coordsz = String.valueOf((int) client.player.getBlockPos().getZ());
-    String coords = String.format("XYZ: %s %s %s", coordsx, coordsy, coordsz);
+    String coords =
+        String.format(
+            Config.coordscolor ? "XYZ: §c%s §a%s §9%s" : "XYZ: %s %s %s",
+            coordsx,
+            coordsy,
+            coordsz);
     String chunkcoordsx = String.valueOf((int) client.player.getChunkPos().x);
     String chunkcoordsz = String.valueOf((int) client.player.getChunkPos().z);
-    String chunkcoords = String.format("Chunk: %s %s", chunkcoordsx, chunkcoordsz);
+    String chunkcoords =
+        String.format(
+            Config.chunkcolor ? "Chunk: §c%s §9%s" : "Chunk: %s %s", chunkcoordsx, chunkcoordsz);
     int ping = SimpleHudUtils.getPing(client);
+    String pingColor =
+        (Config.pingcolor) ? (ping > 300 ? "§4" : ping > 150 ? "§c" : ping > 80 ? "§e" : "§a") : "";
+    String pingString = "Ping: " + pingColor + ping;
     String conn = SimpleHudUtils.getConnectionInfo(client);
     String biome = SimpleHudUtils.getBiome(client);
 
@@ -54,7 +66,7 @@ public class SimpleHudStuff {
     // No collisions, render normally
     if (rfps) {
       int y = baseY + spacing * Config.fpsindex;
-      render(context, client, "FPS: " + fps, y, 0xFFFFFFFF);
+      render(context, client, fpsString, y, 0xFFFFFFFF);
     }
     if (rcoords) {
       int y = baseY + spacing * Config.coordsindex;
@@ -70,7 +82,7 @@ public class SimpleHudStuff {
     }
     if (rping) {
       int y = baseY + spacing * Config.pingindex;
-      render(context, client, "Ping: " + ping, y, 0xFFFFFFFF);
+      render(context, client, pingString, y, 0xFFFFFFFF);
     }
     if (rconn) {
       int y = baseY + spacing * Config.connindex;

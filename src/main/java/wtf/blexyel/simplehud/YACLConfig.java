@@ -145,6 +145,41 @@ public class YACLConfig {
                         .build())
                 .build())
         // ### END POSITIONS ### //
+        // ### START MISC ### //
+        .category(
+            ConfigCategory.createBuilder()
+                .name(Text.literal("Misc"))
+                .option(
+                    Option.<Boolean>createBuilder()
+                        .name(Text.literal("FPS colors"))
+                        .description(OptionDescription.of(Text.literal("Makes FPS gay")))
+                        .binding(false, () -> Config.fpscolor, v -> Config.fpscolor = v)
+                        .controller(TickBoxControllerBuilder::create)
+                        .build())
+                .option(
+                    Option.<Boolean>createBuilder()
+                        .name(Text.literal("Coordinates colors"))
+                        .description(OptionDescription.of(Text.literal("Makes Coordinates gay")))
+                        .binding(false, () -> Config.coordscolor, v -> Config.coordscolor = v)
+                        .controller(TickBoxControllerBuilder::create)
+                        .build())
+                .option(
+                    Option.<Boolean>createBuilder()
+                        .name(Text.literal("Ping color"))
+                        .description(OptionDescription.of(Text.literal("Makes Ping gay")))
+                        .binding(false, () -> Config.pingcolor, v -> Config.pingcolor = v)
+                        .controller(TickBoxControllerBuilder::create)
+                        .build())
+                .option(
+                    Option.<Boolean>createBuilder()
+                        .name(Text.literal("Chunk color"))
+                        .description(
+                            OptionDescription.of(Text.literal("Makes Chunk coordinates gay")))
+                        .binding(false, () -> Config.chunkcolor, v -> Config.chunkcolor = v)
+                        .controller(TickBoxControllerBuilder::create)
+                        .build())
+                .build())
+        // ### END MISC ### //
         .save(Config.HANDLER::save)
         .build()
         .generateScreen(parent);

@@ -33,6 +33,14 @@ public class Config {
 
   @SerialEntry public static boolean chunk = true;
 
+  @SerialEntry public static boolean fpscolor = false;
+
+  @SerialEntry public static boolean coordscolor = false;
+
+  @SerialEntry public static boolean pingcolor = false;
+
+  @SerialEntry public static boolean chunkcolor = false;
+
   // ### END TOGGLES ### //
 
   // ### START INDICES ### //
