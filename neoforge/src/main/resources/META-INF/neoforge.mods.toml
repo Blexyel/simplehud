@@ -1,0 +1,45 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "GNU GPL 3.0"
+
+[[mods]]
+modId = "simplehud"
+version = "${version}"
+displayName = "simplehud"
+authors = "Blexyel"
+description = '''
+Adds simple HUD, thats it
+'''
+logoFile="assets/simplehud/icon_128.png"
+
+[[dependencies.simplehud]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.simplehud]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.9,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.simplehud]]
+modId = "architectury"
+type = "required"
+versionRange = "[18.0.3,)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies.simplehud]]
+modId="yet_another_config_lib_v3"
+mandatory=false
+versionRange="*"
+ordering="NONE"
+side="CLIENT"
+
+[[mixins]]
+config = "simplehud.mixins.json"

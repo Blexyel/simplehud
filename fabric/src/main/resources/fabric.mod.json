@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "simplehud",
+  "version": "${version}",
+  "name": "simplehud",
+  "description": "Adds simple HUD, thats it",
+  "authors": [
+    "Blexyel"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Blexyel/simplehud"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/simplehud/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "wtf.blexyel.simplehud.fabric.SimplehudFabric"
+    ],
+    "modmenu": [
+      "wtf.blexyel.simplehud.fabric.ModMenu"
+    ]
+  },
+  "mixins": [
+    "simplehud.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.17.3",
+    "minecraft": ">=1.21.6",
+    "java": ">=21",
+    "architectury": ">=18.0.3",
+    "fabric-api": "*",
+    "yet_another_config_lib_v3": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

@@ -1,161 +1,70 @@
 plugins {
-    id 'dev.architectury.loom' version '1.11-SNAPSHOT'
+    id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'maven-publish'
-    id 'java'
-    id 'com.diffplug.spotless' version '7.2.1'
-}
-
-configurations {
-    fabricImplementation.extendsFrom(implementation)
-}
-
-loom {
-	forge {
-		mixinConfig "simplehud.mixins.json"
-	}
+    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
 }
 
 architectury {
     minecraft = project.minecraft_version
 }
 
-spotless {
-    java {
-        googleJavaFormat('1.28.0')
-        target 'src/**/*.java'
+allprojects {
+    group = rootProject.maven_group
+    version = rootProject.mod_version
+}
+
+subprojects {
+    apply plugin: 'dev.architectury.loom'
+    apply plugin: 'architectury-plugin'
+    apply plugin: 'maven-publish'
+
+    base {
+        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+        archivesName = "$rootProject.archives_name-$project.name"
     }
-}
 
-tasks.register('fmt') {
-    group = 'formatting'
-    description = 'Formats the code using Spotless.'
-    dependsOn 'spotlessApply'
-}
-
-if (project.hasProperty('useCustomProps') && project.useCustomProps.toBoolean()) {
-    def propsFile = file('gradle.properties.1.21.5')
-    if (propsFile.exists()) {
-        def props = new Properties()
-        propsFile.withInputStream { stream -> props.load(stream) }
-        props.each { key, value ->
-            project.ext.set(key.toString(), value)
-        }
-        println "Loaded gradle.properties.1.21.5"
-    } else {
-        println "gradle.properties.1.21.5 not found!"
-    }
-}
-
-version = "${project.mod_version}_${project.minecraft_version}"
-group = project.maven_group
-
-base {
-    archivesName = project.archives_base_name
-}
-
-repositories {
-    maven { name 'Xander Maven'; url 'https://maven.isxander.dev/releases' }
-    maven { name = "Terraformers"; url = "https://maven.terraformersmc.com/" }
-    maven { name = "Architectury"; url = "https://maven.architectury.dev/" }
-	maven { // NeoForge
-        name = "Forge"
-        url = "https://maven.minecraftforge.net"
-    }
-}
-
-dependencies {
-    // Architectury API
-    modApi "dev.architectury:architectury:${project.architectury_version}"
-
-    // Minecraft and mappings
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    //mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	mappings loom.officialMojangMappings()
-
-    // Fabric Loader & API
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    // Forge Loader
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
-
-    // Mod dependencies
-    modImplementation("dev.isxander:yet-another-config-lib:${project.yacl_version}")
-
-    // Fabric-only mods (like ModMenu)
-    fabricImplementation("com.terraformersmc:modmenu:${modmenu_version}")
-}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "minver", project.minver
-    inputs.property "maxver", project.minecraft_version
-
-    filesMatching(["fabric.mod.json", "META-INF/neoforge.mods.toml"]) {
-        expand "version": inputs.properties.version,
-            "minver": inputs.properties.minver,
-            "maxver": inputs.properties.maxver
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
-}
-
-java {
-    withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-jar {
-    inputs.property "archivesName", project.base.archivesName
-
-    from("LICENSE") {
-        rename { "${it}_${inputs.properties.archivesName}" }
-    }
-}
-
-publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
-            from components.java
-        }
-    }
     repositories {
-        // Add publishing repositories here
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
     }
-}
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java']
+    dependencies {
+        minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
+        mappings loom.officialMojangMappings()
+    }
+
+    java {
+        // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+        // if it is present.
+        // If you remove this line, sources will not be generated.
+        withSourcesJar()
+
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 21
+    }
+
+    // Configure Maven publishing.
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = base.archivesName.get()
+                from components.java
+            }
         }
-        resources {
-            srcDirs = ['src/main/resources']
+
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+            // Add repositories to publish to here.
+            // Notice: This block does NOT have the same function as the block in the top level.
+            // The repositories here will be used for publishing your artifact, not for
+            // retrieving dependencies.
         }
     }
-    fabric {
-        java {
-            srcDirs = ['src/fabric/java']
-        }
-        resources {
-            srcDirs = ['src/fabric/resources']
-        }
-        compileClasspath += main.output
-        runtimeClasspath += main.output
-    }/*
-    forge {
-        java {
-            srcDirs = ['src/forge/java']
-        }
-        resources {
-            srcDirs = ['src/forge/resources']
-        }
-        compileClasspath += main.output
-        runtimeClasspath += main.output
-    }*/
 }
