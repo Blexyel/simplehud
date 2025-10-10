@@ -7,61 +7,61 @@ import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.minecraft.resources.ResourceLocation;
 
 public class Config {
-    public static final ConfigClassHandler<Config> HANDLER =
-            ConfigClassHandler.createBuilder(Config.class)
-                    .id(ResourceLocation.tryParse("simplehud:config"))
-                    .serializer(
-                            config ->
-                                    GsonConfigSerializerBuilder.create(config)
-                                            .setPath(Platform.getConfigFolder().resolve("simplehud.json5"))
-                                            .appendGsonBuilder(builder -> builder.setPrettyPrinting())
-                                            .setJson5(true)
-                                            .build())
-                    .build();
+  public static final ConfigClassHandler<Config> HANDLER =
+      ConfigClassHandler.createBuilder(Config.class)
+          .id(ResourceLocation.tryParse("simplehud:config"))
+          .serializer(
+              config ->
+                  GsonConfigSerializerBuilder.create(config)
+                      .setPath(Platform.getConfigFolder().resolve("simplehud.json5"))
+                      .appendGsonBuilder(builder -> builder.setPrettyPrinting())
+                      .setJson5(true)
+                      .build())
+          .build();
 
-    // ### START TOGGLES ### //
+  // ### START TOGGLES ### //
 
-    @SerialEntry public static boolean fps = true;
+  @SerialEntry public static boolean fps = true;
 
-    @SerialEntry public static boolean coords = true;
+  @SerialEntry public static boolean coords = true;
 
-    @SerialEntry public static boolean ping = true;
+  @SerialEntry public static boolean ping = true;
 
-    @SerialEntry public static boolean conn = true;
+  @SerialEntry public static boolean conn = true;
 
-    @SerialEntry public static boolean biome = true;
+  @SerialEntry public static boolean biome = true;
 
-    @SerialEntry public static boolean chunk = true;
+  @SerialEntry public static boolean chunk = true;
 
-    @SerialEntry public static boolean fpscolor = false;
+  @SerialEntry public static boolean fpscolor = false;
 
-    @SerialEntry public static boolean coordscolor = false;
+  @SerialEntry public static boolean coordscolor = false;
 
-    @SerialEntry public static boolean pingcolor = false;
+  @SerialEntry public static boolean pingcolor = false;
 
-    @SerialEntry public static boolean chunkcolor = false;
+  @SerialEntry public static boolean chunkcolor = false;
 
-    // ### END TOGGLES ### //
+  // ### END TOGGLES ### //
 
-    // ### START INDICES ### //
+  // ### START INDICES ### //
 
-    @SerialEntry public static int fpsindex = 0;
+  @SerialEntry public static int fpsindex = 0;
 
-    @SerialEntry public static int coordsindex = 1;
+  @SerialEntry public static int coordsindex = 1;
 
-    @SerialEntry public static int chunkindex = 2;
+  @SerialEntry public static int chunkindex = 2;
 
-    @SerialEntry public static int pingindex = 3;
+  @SerialEntry public static int pingindex = 3;
 
-    @SerialEntry public static int connindex = 4;
+  @SerialEntry public static int connindex = 4;
 
-    @SerialEntry public static int biomeindex = 5;
+  @SerialEntry public static int biomeindex = 5;
 
-    // ### END INDICES ### //
+  // ### END INDICES ### //
 
-    // ### START SLIDERVAL ### //
+  // ### START SLIDERVAL ### //
 
-    @SerialEntry public static int horizontalpos = 0;
+  @SerialEntry public static int horizontalpos = 0;
 
-    // ### END SLIDERVAL ### //
+  // ### END SLIDERVAL ### //
 }

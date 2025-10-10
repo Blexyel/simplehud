@@ -2,6 +2,20 @@ plugins {
     id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+    id 'com.diffplug.spotless' version '7.2.1'
+}
+
+spotless {
+    java {
+        googleJavaFormat('1.28.0')  // specify the version of google-java-format
+        target '**/src/**/*.java'       // files to format
+    }
+}
+
+tasks.register('fmt') {
+    group = 'formatting'
+    description = 'Formats the code using Spotless.'
+    dependsOn 'spotlessApply'
 }
 
 architectury {
