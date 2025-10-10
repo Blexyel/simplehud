@@ -1,9 +1,9 @@
 package wtf.blexyel.simplehud.mixin;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphics;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -12,14 +12,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import wtf.blexyel.simplehud.SimpleHudStuff;
 
-@Mixin(InGameHud.class)
+@Mixin(Gui.class)
 public class InGameHudMixin {
-  @Shadow @Final private MinecraftClient client;
+  @Shadow @Final private Minecraft minecraft;
 
   @Inject(method = "render", at = @At("TAIL"))
-  public void render(DrawContext drawContext, RenderTickCounter tickCounter, CallbackInfo ci) {
-    if (MinecraftClient.getInstance().options.hudHidden) return;
+  public void render(GuiGraphics drawContext, DeltaTracker tickCounter, CallbackInfo ci) {
+    if (Minecraft.getInstance().options.hideGui) return;
     SimpleHudStuff simpleHudStuff = new SimpleHudStuff();
-    simpleHudStuff.getEntry(drawContext, client);
+    simpleHudStuff.getEntry(drawContext, minecraft);
   }
 }

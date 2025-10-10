@@ -4,12 +4,12 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 
 public class Config {
   public static final ConfigClassHandler<Config> HANDLER =
       ConfigClassHandler.createBuilder(Config.class)
-          .id(Identifier.tryParse("simplehud:config"))
+          .id(ResourceLocation.tryParse("simplehud:config"))
           .serializer(
               config ->
                   GsonConfigSerializerBuilder.create(config)

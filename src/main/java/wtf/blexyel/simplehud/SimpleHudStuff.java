@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.util.Mth;
 
 public class SimpleHudStuff {
-  public void getEntry(DrawContext context, MinecraftClient client) {
+  public void getEntry(GuiGraphics context, Minecraft client) {
     boolean rfps = Config.fps;
     boolean rcoords = Config.coords;
     boolean rchunk = Config.chunk;
@@ -17,20 +17,20 @@ public class SimpleHudStuff {
     boolean rconn = Config.conn;
     boolean rbiome = Config.biome;
 
-    int fps = client.getCurrentFps();
+    int fps = client.getFps();
     String fpsColor = (Config.fpscolor) ? (fps <= 30 ? "§c" : fps < 60 ? "§e" : "§a") : "";
     String fpsString = "FPS: " + fpsColor + fps;
-    String coordsx = String.valueOf((int) client.player.getBlockPos().getX());
-    String coordsy = String.valueOf((int) client.player.getBlockPos().getY());
-    String coordsz = String.valueOf((int) client.player.getBlockPos().getZ());
+    String coordsx = String.valueOf((int) client.player.blockPosition().getX());
+    String coordsy = String.valueOf((int) client.player.blockPosition().getY());
+    String coordsz = String.valueOf((int) client.player.blockPosition().getZ());
     String coords =
         String.format(
             Config.coordscolor ? "XYZ: §c%s §a%s §9%s" : "XYZ: %s %s %s",
             coordsx,
             coordsy,
             coordsz);
-    String chunkcoordsx = String.valueOf((int) client.player.getChunkPos().x);
-    String chunkcoordsz = String.valueOf((int) client.player.getChunkPos().z);
+    String chunkcoordsx = String.valueOf((int) client.player.chunkPosition().x);
+    String chunkcoordsz = String.valueOf((int) client.player.chunkPosition().z);
     String chunkcoords =
         String.format(
             Config.chunkcolor ? "Chunk: §c%s §9%s" : "Chunk: %s %s", chunkcoordsx, chunkcoordsz);
@@ -94,19 +94,19 @@ public class SimpleHudStuff {
     }
   }
 
-  public void render(DrawContext context, MinecraftClient client, String text, int y, int color) {
+  public void render(GuiGraphics context, Minecraft client, String text, int y, int color) {
     int sliderValue = Config.horizontalpos;
 
-    sliderValue = MathHelper.clamp(sliderValue, 0, 100);
+    sliderValue = Mth.clamp(sliderValue, 0, 100);
 
-    int scaledWidth = client.getWindow().getScaledWidth();
-    int textWidth = client.textRenderer.getWidth(text);
+    int scaledWidth = client.getWindow().getGuiScaledWidth();
+    int textWidth = client.font.width(text);
 
     int leftBound = 5;
     int rightBound = scaledWidth - textWidth - 5;
 
     int pos = leftBound + (rightBound - leftBound) * sliderValue / 100;
 
-    context.drawText(client.textRenderer, text, pos, y, color, true);
+    context.drawString(client.font, text, pos, y, color, true);
   }
 }
