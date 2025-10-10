@@ -1,6 +1,8 @@
 .gradle
 .idea
 build
+bin/
 */.gradle
 */build
 */run/
+*/bin/

@@ -1,6 +1,5 @@
 package wtf.blexyel.simplehud.fabric;
 
-import wtf.blexyel.simplehud.Config;
 import wtf.blexyel.simplehud.Simplehud;
 import net.fabricmc.api.ModInitializer;
 
