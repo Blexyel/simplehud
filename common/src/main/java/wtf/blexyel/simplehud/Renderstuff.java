@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.util.Mth;
 
@@ -107,6 +108,8 @@ public class Renderstuff {
 
         int pos = leftBound + (rightBound - leftBound) * sliderValue / 100;
 
-        context.drawString(client.font, text, pos, y, color, true);
+        //context.drawString(client.font, text, pos, y, color, true);
+
+        GuiHelper.drawString(context, client.font, text, pos, y, color, true);
     }
 }

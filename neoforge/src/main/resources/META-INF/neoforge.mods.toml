@@ -5,7 +5,7 @@ license = "GNU GPL 3.0"
 
 [[mods]]
 modId = "simplehud"
-version = "${version}"
+version = "${version}_neoforge"
 displayName = "simplehud"
 authors = "Blexyel"
 description = '''
@@ -23,14 +23,14 @@ side = "CLIENT"
 [[dependencies.simplehud]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.9,)"
+versionRange = "[1.21,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.simplehud]]
 modId = "architectury"
 type = "required"
-versionRange = "[18.0.3,)"
+versionRange = "*"
 ordering = "AFTER"
 side = "CLIENT"
 
