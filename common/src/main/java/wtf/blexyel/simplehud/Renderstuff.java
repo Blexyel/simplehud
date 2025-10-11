@@ -7,6 +7,7 @@ import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.util.Mth;
+import wtf.blexyel.simplehud.config.Config;
 
 public class Renderstuff {
   public void getEntry(GuiGraphics context, Minecraft client) {

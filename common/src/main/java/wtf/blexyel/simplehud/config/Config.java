@@ -1,5 +1,6 @@
-package wtf.blexyel.simplehud;
+package wtf.blexyel.simplehud.config;
 
+import com.google.gson.GsonBuilder;
 import dev.architectury.platform.Platform;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
@@ -14,7 +15,7 @@ public class Config {
               config ->
                   GsonConfigSerializerBuilder.create(config)
                       .setPath(Platform.getConfigFolder().resolve("simplehud.json5"))
-                      .appendGsonBuilder(builder -> builder.setPrettyPrinting())
+                      .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
                       .setJson5(true)
                       .build())
           .build();

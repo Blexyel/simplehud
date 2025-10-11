@@ -4,7 +4,7 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import wtf.blexyel.simplehud.Simplehud;
-import wtf.blexyel.simplehud.YACLConfig;
+import wtf.blexyel.simplehud.config.YACLConfig;
 
 @Mod(Simplehud.MOD_ID)
 public final class SimplehudNeoForge {
