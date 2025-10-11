@@ -1,5 +1,6 @@
 package wtf.blexyel.simplehud;
 
+import dev.architectury.platform.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wtf.blexyel.simplehud.config.Config;
@@ -14,6 +15,7 @@ public final class Simplehud {
     LOGGER.info("Simple HUD is alive!!");
 
     Config.HANDLER.load();
-    Keybindings.init();
+    String version = Platform.getMinecraftVersion();
+    if (!(version.compareTo("1.21.8") <= 0)) Keybindings.init();
   }
 }
