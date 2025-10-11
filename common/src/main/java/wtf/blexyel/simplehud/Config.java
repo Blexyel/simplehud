@@ -21,6 +21,8 @@ public class Config {
 
   // ### START TOGGLES ### //
 
+  @SerialEntry public static boolean enabled = true;
+
   @SerialEntry public static boolean fps = true;
 
   @SerialEntry public static boolean coords = true;

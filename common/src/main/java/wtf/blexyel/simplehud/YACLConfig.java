@@ -26,6 +26,14 @@ public class YACLConfig {
                 .name(Component.literal("General"))
                 .option(
                     Option.<Boolean>createBuilder()
+                        .name(Component.literal("Enabled"))
+                        .description(
+                            OptionDescription.of(Component.literal("Enables/Disables the HUD")))
+                        .binding(true, () -> Config.enabled, newVal -> Config.enabled = newVal)
+                        .controller(TickBoxControllerBuilder::create)
+                        .build())
+                .option(
+                    Option.<Boolean>createBuilder()
                         .name(Component.literal("FPS"))
                         .description(
                             OptionDescription.of(Component.literal("Shows the current FPS")))

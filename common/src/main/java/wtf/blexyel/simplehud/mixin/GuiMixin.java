@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import wtf.blexyel.simplehud.Config;
 import wtf.blexyel.simplehud.Renderstuff;
 
 @Mixin(Gui.class)
@@ -18,7 +19,7 @@ public class GuiMixin {
 
   @Inject(method = "render", at = @At("TAIL"))
   public void render(GuiGraphics drawContext, DeltaTracker tickCounter, CallbackInfo ci) {
-    if (Minecraft.getInstance().options.hideGui) return;
+    if (Minecraft.getInstance().options.hideGui || !Config.enabled) return;
     Renderstuff renderstuff = new Renderstuff();
     renderstuff.getEntry(drawContext, minecraft);
   }

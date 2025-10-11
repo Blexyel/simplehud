@@ -13,6 +13,10 @@ Well look no further as you can now have this!!
 
 There's not really anything else to say, except for that you can toggle everything in the config (modmenu required to access config screen)
 
+> [!WARNING]
+> The HUD will NOT work in a development environment on fabric, due to me using java reflection for 1.21.x compat and dev-env using different mappings
+>
+> If you know a fix for this, please propose it as a PR
 
 ##### Contributing
 If you are doing development on this mod and you plan to PR at some point, please make sure to test your changes fully before submitting a PR. 

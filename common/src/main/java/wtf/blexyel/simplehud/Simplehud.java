@@ -13,5 +13,6 @@ public final class Simplehud {
     LOGGER.info("Simple HUD is alive!!");
 
     Config.HANDLER.load();
+    Keybindings.init();
   }
 }
