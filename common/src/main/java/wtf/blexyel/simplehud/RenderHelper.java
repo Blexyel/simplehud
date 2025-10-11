@@ -1,15 +1,17 @@
-package wtf.blexyel.simplehud.neoforge;
+package wtf.blexyel.simplehud;
 
+import dev.architectury.platform.Platform;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 
-public class GuiHelperImpl {
-  public static void drawString(
-      GuiGraphics context, Font font, String text, int x, int y, int color, boolean shadow) {
+public class RenderHelper {
+  public static void drawString(GuiGraphics context, Font font, String text, int x, int y, int color, boolean shadow) {
     try {
       var method =
           GuiGraphics.class.getMethod(
-              "drawString",
+              Platform.isFabric() && !Platform.isDevelopmentEnvironment()
+                  ? "method_51433"
+                  : "drawString",
               Font.class,
               String.class,
               int.class,
@@ -18,7 +20,7 @@ public class GuiHelperImpl {
               boolean.class);
       method.invoke(context, font, text, x, y, color, shadow);
     } catch (Throwable t) {
-      System.err.println("[SimpleHUD/NeoForge] drawString compatibility issue:");
+      Simplehud.LOGGER.error("[SimpleHUD] drawString compatibility issue:");
       t.printStackTrace();
     }
   }

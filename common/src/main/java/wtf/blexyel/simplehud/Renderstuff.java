@@ -109,6 +109,6 @@ public class Renderstuff {
 
     // context.drawString(client.font, text, pos, y, color, true);
 
-    GuiHelper.drawString(context, client.font, text, pos, y, color, true);
+    RenderHelper.drawString(context, client.font, text, pos, y, color, true);
   }
 }
