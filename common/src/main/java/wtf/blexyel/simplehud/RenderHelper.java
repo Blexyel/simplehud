@@ -5,7 +5,8 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 
 public class RenderHelper {
-  public static void drawString(GuiGraphics context, Font font, String text, int x, int y, int color, boolean shadow) {
+  public static void drawString(
+      GuiGraphics context, Font font, String text, int x, int y, int color, boolean shadow) {
     try {
       var method =
           GuiGraphics.class.getMethod(

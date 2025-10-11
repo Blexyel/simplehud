@@ -1,7 +1,5 @@
 package wtf.blexyel.simplehud.config;
 
-import dev.isxander.yacl3.config.v2.api.SerialEntry;
-
 public enum ConfigEnums {
   // ### START TOGGLES ### //
 
