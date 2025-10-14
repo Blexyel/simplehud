@@ -11,7 +11,7 @@ authors = "Blexyel"
 description = '''
 Adds simple HUD, thats it
 '''
-logoFile="assets/simplehud/icon_128.png"
+logoFile="assets/simplehud/icon.png"
 
 [[dependencies.simplehud]]
 modId = "neoforge"
