@@ -2,6 +2,7 @@
 .idea
 build
 bin/
+.architectury-transformer
 */.gradle
 */build
 */run/
