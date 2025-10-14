@@ -3,6 +3,7 @@ package wtf.blexyel.simplehud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 
 public class Utils {
 
@@ -31,6 +32,23 @@ public class Utils {
       assert client.getCameraEntity() != null;
       final BlockPos blockPos = client.getCameraEntity().getOnPos();
       return String.format(client.level.getBiome(blockPos).getRegisteredName());
+    }
+    return "Unknown";
+  }
+
+  // do this at some point (possibly with server integration (aka. packets))
+  public static float getTPS(Minecraft client) {
+    if (client != null && client.level != null) {
+      float time = System.currentTimeMillis();
+
+      return Mth.clamp(0.0F /*client.gui.getGuiTicks()*/, 0.0F, 1000.0F);
+    }
+    return 0.0F;
+  }
+
+  public static String getFacingDirection(Minecraft client) {
+    if (client != null && client.player != null) {
+      return client.player.getDirection().toString();
     }
     return "Unknown";
   }

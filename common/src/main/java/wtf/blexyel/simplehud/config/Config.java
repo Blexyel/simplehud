@@ -36,6 +36,8 @@ public class Config {
 
   @SerialEntry public static boolean chunk = true;
 
+  @SerialEntry public static boolean facing = false;
+
   @SerialEntry public static boolean fpscolor = false;
 
   @SerialEntry public static boolean coordscolor = false;
@@ -59,6 +61,8 @@ public class Config {
   @SerialEntry public static int connindex = 4;
 
   @SerialEntry public static int biomeindex = 5;
+
+  @SerialEntry public static int facingindex = 6;
 
   // ### END INDICES ### //
 

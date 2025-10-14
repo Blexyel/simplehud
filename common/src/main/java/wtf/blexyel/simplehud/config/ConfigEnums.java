@@ -10,6 +10,7 @@ public enum ConfigEnums {
   CONN,
   BIOME,
   CHUNK,
+  FACING,
   FPSCOLOR,
   COORDSCOLOR,
   PINGCOLOR,
@@ -25,6 +26,7 @@ public enum ConfigEnums {
   PINGINDEX,
   CONNINDEX,
   BIOMEINDEX,
+  FACINGINDEX,
 
   // ### END INDICES ### //
 

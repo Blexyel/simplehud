@@ -17,6 +17,7 @@ public class Renderstuff {
     boolean rping = Config.ping;
     boolean rconn = Config.conn;
     boolean rbiome = Config.biome;
+    boolean rfacing = Config.facing;
 
     int fps = client.getFps();
     String fpsColor = (Config.fpscolor) ? (fps <= 30 ? "§c" : fps < 60 ? "§e" : "§a") : "";
@@ -41,6 +42,7 @@ public class Renderstuff {
     String pingString = "Ping: " + pingColor + ping;
     String conn = Utils.getConnectionInfo(client);
     String biome = Utils.getBiome(client);
+    String facing = Utils.getFacingDirection(client);
 
     int baseY = 5;
     int spacing = 10;
@@ -92,6 +94,10 @@ public class Renderstuff {
     if (rbiome) {
       int y = baseY + spacing * Config.biomeindex;
       render(context, client, "Biome: " + biome, y, 0xFFFFFFFF);
+    }
+    if (rfacing) {
+      int y = baseY + spacing * Config.facingindex;
+      render(context, client, "Facing: " + facing, y, 0xFFFFFFFF);
     }
   }
 

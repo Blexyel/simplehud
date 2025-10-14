@@ -46,6 +46,9 @@ public class YACLConfig {
                 .option(
                     YACLConfigHelper.booleanOption(
                         true, "Biome", "Shows the current biome", ConfigEnums.BIOME))
+                .option(
+                    YACLConfigHelper.booleanOption(
+                        false, "Facing", "Shows the direction you are facing", ConfigEnums.FACING))
                 .build())
         // ### END TOGGLES ### //
         // ### START POSITIONS ### //
