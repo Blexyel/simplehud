@@ -1,8 +1,11 @@
 package wtf.blexyel.simplehud;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -47,9 +50,6 @@ public class Renderstuff {
     int baseY = 5;
     int spacing = 10;
 
-    if (!rfps && !rcoords && !rping && !rconn && !rbiome) return;
-
-    // Gather all enabled indices
     List<Integer> indices = new ArrayList<>();
     if (rfps) indices.add(Config.fpsindex);
     if (rcoords) indices.add(Config.coordsindex);
@@ -57,46 +57,56 @@ public class Renderstuff {
     if (rping) indices.add(Config.pingindex);
     if (rconn) indices.add(Config.connindex);
     if (rbiome) indices.add(Config.biomeindex);
+    if (rfacing) indices.add(Config.facingindex);
 
-    // Check for duplicates
+    if (indices.isEmpty()) return;
+
     Set<Integer> unique = new HashSet<>(indices);
     if (unique.size() < indices.size()) {
-      // Collision found
       render(context, client, "ERROR: ONE OR MULTIPLE AT SAME POSITION", baseY, 0xFFFF0000);
       return;
     }
 
-    // No collisions, render normally
+    List<Integer> sorted = new ArrayList<>(unique);
+    Collections.sort(sorted);
+    Map<Integer, Integer> adjusted = new HashMap<>();
+    for (int i = 0; i < sorted.size(); i++) {
+      adjusted.put(sorted.get(i), i);
+    }
+
     if (rfps) {
-      int y = baseY + spacing * Config.fpsindex;
+      int adj = adjusted.get(Config.fpsindex);
+      int y = baseY + spacing * adj;
       render(context, client, fpsString, y, 0xFFFFFFFF);
     }
     if (rcoords) {
-      int y = baseY + spacing * Config.coordsindex;
-      render(context, client, coords, y, 0xFFFFFFFF);
-    }
-    if (rcoords) {
-      int y = baseY + spacing * Config.coordsindex;
+      int adj = adjusted.get(Config.coordsindex);
+      int y = baseY + spacing * adj;
       render(context, client, coords, y, 0xFFFFFFFF);
     }
     if (rchunk) {
-      int y = baseY + spacing * Config.chunkindex;
+      int adj = adjusted.get(Config.chunkindex);
+      int y = baseY + spacing * adj;
       render(context, client, chunkcoords, y, 0xFFFFFFFF);
     }
     if (rping) {
-      int y = baseY + spacing * Config.pingindex;
+      int adj = adjusted.get(Config.pingindex);
+      int y = baseY + spacing * adj;
       render(context, client, pingString, y, 0xFFFFFFFF);
     }
     if (rconn) {
-      int y = baseY + spacing * Config.connindex;
+      int adj = adjusted.get(Config.connindex);
+      int y = baseY + spacing * adj;
       render(context, client, "IP: " + conn, y, 0xFFFFFFFF);
     }
     if (rbiome) {
-      int y = baseY + spacing * Config.biomeindex;
+      int adj = adjusted.get(Config.biomeindex);
+      int y = baseY + spacing * adj;
       render(context, client, "Biome: " + biome, y, 0xFFFFFFFF);
     }
     if (rfacing) {
-      int y = baseY + spacing * Config.facingindex;
+      int adj = adjusted.get(Config.facingindex);
+      int y = baseY + spacing * adj;
       render(context, client, "Facing: " + facing, y, 0xFFFFFFFF);
     }
   }

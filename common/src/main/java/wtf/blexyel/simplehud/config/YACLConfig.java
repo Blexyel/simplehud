@@ -98,6 +98,13 @@ public class YACLConfig {
                         ConfigEnums.BIOMEINDEX,
                         indices))
                 .option(
+                    YACLConfigHelper.intOption(
+                        0,
+                        "Facing Position Index",
+                        "Sets the position index for the Facing display (North, South, etc.)",
+                        ConfigEnums.FACINGINDEX,
+                        indices))
+                .option(
                     Option.<Integer>createBuilder()
                         .name(Component.literal("Horizontal Position"))
                         .description(
