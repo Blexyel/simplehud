@@ -2,7 +2,7 @@ package wtf.blexyel.simplehud.neoforge;
 
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.client.ConfigScreenHandler;
 import wtf.blexyel.simplehud.Simplehud;
 import wtf.blexyel.simplehud.config.YACLConfig;
 
@@ -11,7 +11,10 @@ public final class SimplehudNeoForge {
   public SimplehudNeoForge() {
     ModLoadingContext.get()
         .registerExtensionPoint(
-            IConfigScreenFactory.class, () -> (client, parent) -> YACLConfig.create(parent));
+            ConfigScreenHandler.ConfigScreenFactory.class,
+            () ->
+                new ConfigScreenHandler.ConfigScreenFactory(
+                    (client, parent) -> YACLConfig.create(parent)));
     // Run our common setup.
     Simplehud.init();
   }
