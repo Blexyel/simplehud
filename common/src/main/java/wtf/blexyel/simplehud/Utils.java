@@ -3,7 +3,10 @@ package wtf.blexyel.simplehud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.client.gui.components.DebugScreenOverlay;
 
 public class Utils {
 
@@ -31,7 +34,11 @@ public class Utils {
     if (client.level != null) {
       assert client.getCameraEntity() != null;
       final BlockPos blockPos = client.getCameraEntity().getOnPos();
-      return String.format(client.level.getBiome(blockPos).getRegisteredName());
+      return (String)client.level.getBiome(blockPos).unwrap().map((resourceKey) -> {
+         return resourceKey.location().toString();
+      }, (biome) -> {
+         return "[unregistered " + biome + "]";
+      });
     }
     return "Unknown";
   }

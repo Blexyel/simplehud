@@ -1,6 +1,6 @@
 package wtf.blexyel.simplehud.mixin;
 
-import net.minecraft.client.DeltaTracker;
+// import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -18,7 +18,7 @@ public class GuiMixin {
   @Shadow @Final private Minecraft minecraft;
 
   @Inject(method = "render", at = @At("TAIL"))
-  public void render(GuiGraphics drawContext, DeltaTracker tickCounter, CallbackInfo ci) {
+  public void render(GuiGraphics drawContext, float tickCounter, CallbackInfo ci) {
     // If GUI hidden, F3 visible or enabled flag false, dont do shit
     if (Minecraft.getInstance().options.hideGui || !Config.enabled) return;
     Renderstuff renderstuff = new Renderstuff();
