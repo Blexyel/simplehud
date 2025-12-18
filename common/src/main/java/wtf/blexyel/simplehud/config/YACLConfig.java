@@ -64,42 +64,42 @@ public class YACLConfig {
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        0,
+                        1,
                         "Coordinates Position Index",
                         "Sets the position index for the Coordinates display",
                         ConfigEnums.COORDSINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        0,
+                        2,
                         "Chunk Coordinates Position Index",
                         "Sets the position index for the Chunk Coordinates display",
                         ConfigEnums.CHUNKINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        0,
+                        3,
                         "Ping Position Index",
                         "Sets the position index for the Ping display",
                         ConfigEnums.PINGINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        0,
+                        4,
                         "Connection/IP Position Index",
                         "Sets the position index for the Connection/IP display",
                         ConfigEnums.CONNINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        0,
+                        5,
                         "Biome Position Index",
                         "Sets the position index for the Biome display",
                         ConfigEnums.BIOMEINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        0,
+                        6,
                         "Facing Position Index",
                         "Sets the position index for the Facing display (North, South, etc.)",
                         ConfigEnums.FACINGINDEX,
