@@ -3,7 +3,6 @@ package wtf.blexyel.simplehud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
 
 public class Utils {
 
@@ -39,9 +38,7 @@ public class Utils {
   // do this at some point (possibly with server integration (aka. packets))
   public static float getTPS(Minecraft client) {
     if (client != null && client.level != null) {
-      float time = System.currentTimeMillis();
-
-      return Mth.clamp(0.0F /*client.gui.getGuiTicks()*/, 0.0F, 1000.0F);
+      return (float) Math.round(TpsCalc.getTps() * 100) / 100;
     }
     return 0.0F;
   }

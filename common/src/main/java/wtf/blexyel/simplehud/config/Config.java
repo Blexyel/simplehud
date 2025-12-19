@@ -5,12 +5,12 @@ import dev.architectury.platform.Platform;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class Config {
   public static final ConfigClassHandler<Config> HANDLER =
       ConfigClassHandler.createBuilder(Config.class)
-          .id(ResourceLocation.tryParse("simplehud:config"))
+          .id(Identifier.tryParse("simplehud:config"))
           .serializer(
               config ->
                   GsonConfigSerializerBuilder.create(config)
@@ -30,6 +30,8 @@ public class Config {
 
   @SerialEntry public static boolean ping = true;
 
+  @SerialEntry public static boolean tps = true;
+
   @SerialEntry public static boolean conn = true;
 
   @SerialEntry public static boolean biome = true;
@@ -39,6 +41,8 @@ public class Config {
   @SerialEntry public static boolean facing = false;
 
   @SerialEntry public static boolean fpscolor = false;
+
+  @SerialEntry public static boolean tpscolor = false;
 
   @SerialEntry public static boolean coordscolor = false;
 
@@ -58,11 +62,13 @@ public class Config {
 
   @SerialEntry public static int pingindex = 3;
 
-  @SerialEntry public static int connindex = 4;
+  @SerialEntry public static int tpsindex = 4;
 
-  @SerialEntry public static int biomeindex = 5;
+  @SerialEntry public static int connindex = 5;
 
-  @SerialEntry public static int facingindex = 6;
+  @SerialEntry public static int biomeindex = 6;
+
+  @SerialEntry public static int facingindex = 7;
 
   // ### END INDICES ### //
 

@@ -17,6 +17,17 @@ public final class Simplehud {
     Config.HANDLER.load();
     boolean keybindingsLoaded = false;
 
+    dev.architectury.event.events.client.ClientLifecycleEvent.CLIENT_LEVEL_LOAD.register(
+        (minecraft) -> {
+          TpsCalc.reset();
+        });
+
+    // Register client stop / disconnect hook
+    dev.architectury.event.events.client.ClientLifecycleEvent.CLIENT_STOPPING.register(
+        minecraft -> {
+          TpsCalc.reset();
+        });
+
     try {
       // Try new Keybindings
       Class<?> keybindingsClass = Class.forName("wtf.blexyel.simplehud.Keybindings");

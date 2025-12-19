@@ -11,7 +11,9 @@ public enum ConfigEnums {
   BIOME,
   CHUNK,
   FACING,
+  TPS,
   FPSCOLOR,
+  TPSCOLOR,
   COORDSCOLOR,
   PINGCOLOR,
   CHUNKCOLOR,
@@ -27,6 +29,7 @@ public enum ConfigEnums {
   CONNINDEX,
   BIOMEINDEX,
   FACINGINDEX,
+  TPSINDEX,
 
   // ### END INDICES ### //
 

@@ -21,6 +21,7 @@ public class Renderstuff {
     boolean rconn = Config.conn;
     boolean rbiome = Config.biome;
     boolean rfacing = Config.facing;
+    boolean rtps = Config.tps;
 
     int fps = client.getFps();
     String fpsColor = (Config.fpscolor) ? (fps <= 30 ? "§c" : fps < 60 ? "§e" : "§a") : "";
@@ -46,6 +47,11 @@ public class Renderstuff {
     String conn = Utils.getConnectionInfo(client);
     String biome = Utils.getBiome(client);
     String facing = Utils.getFacingDirection(client);
+    String tpsColor =
+        (Config.tpscolor)
+            ? (Utils.getTPS(client) <= 15 ? "§c" : Utils.getTPS(client) < 18 ? "§e" : "§a")
+            : "";
+    String tpsString = "TPS: " + tpsColor + Utils.getTPS(client);
 
     int baseY = 5;
     int spacing = 10;
@@ -58,6 +64,7 @@ public class Renderstuff {
     if (rconn) indices.add(Config.connindex);
     if (rbiome) indices.add(Config.biomeindex);
     if (rfacing) indices.add(Config.facingindex);
+    if (rtps) indices.add(Config.tpsindex);
 
     if (indices.isEmpty()) return;
 
@@ -93,6 +100,11 @@ public class Renderstuff {
       int adj = adjusted.get(Config.pingindex);
       int y = baseY + spacing * adj;
       render(context, client, pingString, y, 0xFFFFFFFF);
+    }
+    if (rtps) {
+      int adj = adjusted.get(Config.tpsindex);
+      int y = baseY + spacing * adj;
+      render(context, client, tpsString, y, 0xFFFFFFFF);
     }
     if (rconn) {
       int adj = adjusted.get(Config.connindex);

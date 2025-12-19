@@ -42,6 +42,9 @@ public class YACLConfig {
                         true, "Ping", "Shows the current ping", ConfigEnums.PING))
                 .option(
                     YACLConfigHelper.booleanOption(
+                        true, "TPS", "Shows the server TPS (not very accurate)", ConfigEnums.TPS))
+                .option(
+                    YACLConfigHelper.booleanOption(
                         true, "Connection/IP", "Shows the current connection/IP", ConfigEnums.CONN))
                 .option(
                     YACLConfigHelper.booleanOption(
@@ -86,20 +89,27 @@ public class YACLConfig {
                 .option(
                     YACLConfigHelper.intOption(
                         4,
+                        "TPS Position Index",
+                        "Sets the position index for the TPS display",
+                        ConfigEnums.TPSINDEX,
+                        indices))
+                .option(
+                    YACLConfigHelper.intOption(
+                        5,
                         "Connection/IP Position Index",
                         "Sets the position index for the Connection/IP display",
                         ConfigEnums.CONNINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        5,
+                        6,
                         "Biome Position Index",
                         "Sets the position index for the Biome display",
                         ConfigEnums.BIOMEINDEX,
                         indices))
                 .option(
                     YACLConfigHelper.intOption(
-                        6,
+                        7,
                         "Facing Position Index",
                         "Sets the position index for the Facing display (North, South, etc.)",
                         ConfigEnums.FACINGINDEX,
@@ -133,6 +143,9 @@ public class YACLConfig {
                 .option(
                     YACLConfigHelper.booleanOption(
                         false, "Ping color", "Makes Ping gay", ConfigEnums.PINGCOLOR))
+                .option(
+                    YACLConfigHelper.booleanOption(
+                        false, "TPS color", "Makes TPS gay", ConfigEnums.TPSCOLOR))
                 .option(
                     YACLConfigHelper.booleanOption(
                         false,
