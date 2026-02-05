@@ -152,6 +152,12 @@ public class YACLConfig {
                         "Chunk color",
                         "Makes Chunk coordinates gay",
                         ConfigEnums.CHUNKCOLOR))
+                .option(
+                    YACLConfigHelper.booleanOption(
+                        false,
+                        "Background",
+                        "Enable text background",
+                        ConfigEnums.BACKGROUND))
                 .build())
         // ### END MISC ### //
         .save(Config.HANDLER::save)

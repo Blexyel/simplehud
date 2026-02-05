@@ -17,6 +17,7 @@ public enum ConfigEnums {
   COORDSCOLOR,
   PINGCOLOR,
   CHUNKCOLOR,
+  BACKGROUND,
 
   // ### END TOGGLES ### //
 
