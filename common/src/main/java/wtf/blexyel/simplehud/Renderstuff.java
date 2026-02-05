@@ -124,8 +124,13 @@ public class Renderstuff {
 
     int pos = leftBound + (rightBound - leftBound) * sliderValue / 100;
 
+    int entryHeight = client.font.lineHeight;
+
     // context.drawString(client.font, text, pos, y, color, true);
 
+    if (Config.background) {
+      context.fill(pos - 1, y - 1, pos + textWidth + 1, y + entryHeight, 0x55000000);
+    }
     RenderHelper.drawString(context, client.font, text, pos, y, color, true);
   }
 }

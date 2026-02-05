@@ -46,6 +46,8 @@ public class Config {
 
   @SerialEntry public static boolean chunkcolor = false;
 
+  @SerialEntry public static boolean background = false;
+
   // ### END TOGGLES ### //
 
   // ### START INDICES ### //
