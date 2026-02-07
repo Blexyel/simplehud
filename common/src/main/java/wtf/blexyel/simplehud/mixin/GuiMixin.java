@@ -20,7 +20,9 @@ public class GuiMixin {
   @Inject(method = "render", at = @At("TAIL"))
   public void render(GuiGraphics drawContext, DeltaTracker tickCounter, CallbackInfo ci) {
     // If GUI hidden, F3 visible or enabled flag false, dont do shit
-    if (Minecraft.getInstance().options.hideGui || !Config.enabled) return;
+    if (Minecraft.getInstance().options.hideGui
+        || !Config.enabled
+        || Minecraft.getInstance().gui.getDebugOverlay().showDebugScreen()) return;
     Renderstuff renderstuff = new Renderstuff();
     renderstuff.getEntry(drawContext, minecraft);
   }
