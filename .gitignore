@@ -3,7 +3,7 @@
 build
 bin/
 .architectury-transformer
-*/.gradle
-*/build
-*/run/
-*/bin/
+/.gradle
+/build
+/run/
+/bin/
