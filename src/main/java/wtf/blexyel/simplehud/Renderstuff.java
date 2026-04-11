@@ -1,5 +1,7 @@
 package wtf.blexyel.simplehud;
 
+import static wtf.blexyel.simplehud.Simplehud.LOGGER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,7 +15,9 @@ import net.minecraft.util.Mth;
 import wtf.blexyel.simplehud.config.Config;
 
 public class Renderstuff {
-  public void getEntry(GuiGraphicsExtractor context, Minecraft client) {
+  public void getEntry(GuiGraphicsExtractor graphics, Minecraft client) {
+    //LOGGER.info(String.valueOf(client.player));
+    if (client.player == null) return;
     boolean rfps = Config.fps;
     boolean rcoords = Config.coords;
     boolean rchunk = Config.chunk;
@@ -70,7 +74,7 @@ public class Renderstuff {
 
     Set<Integer> unique = new HashSet<>(indices);
     if (unique.size() < indices.size()) {
-      render(context, client, "ERROR: ONE OR MULTIPLE AT SAME POSITION", baseY, 0xFFFF0000);
+      render(graphics, client, "ERROR: ONE OR MULTIPLE AT SAME POSITION", baseY, 0xFFFF0000);
       return;
     }
 
@@ -84,47 +88,47 @@ public class Renderstuff {
     if (rfps) {
       int adj = adjusted.get(Config.fpsindex);
       int y = baseY + spacing * adj;
-      render(context, client, fpsString, y, 0xFFFFFFFF);
+      render(graphics, client, fpsString, y, 0xFFFFFFFF);
     }
     if (rcoords) {
       int adj = adjusted.get(Config.coordsindex);
       int y = baseY + spacing * adj;
-      render(context, client, coords, y, 0xFFFFFFFF);
+      render(graphics, client, coords, y, 0xFFFFFFFF);
     }
     if (rchunk) {
       int adj = adjusted.get(Config.chunkindex);
       int y = baseY + spacing * adj;
-      render(context, client, chunkcoords, y, 0xFFFFFFFF);
+      render(graphics, client, chunkcoords, y, 0xFFFFFFFF);
     }
     if (rping) {
       int adj = adjusted.get(Config.pingindex);
       int y = baseY + spacing * adj;
-      render(context, client, pingString, y, 0xFFFFFFFF);
+      render(graphics, client, pingString, y, 0xFFFFFFFF);
     }
     if (rtps) {
       int adj = adjusted.get(Config.tpsindex);
       int y = baseY + spacing * adj;
-      render(context, client, tpsString, y, 0xFFFFFFFF);
+      render(graphics, client, tpsString, y, 0xFFFFFFFF);
     }
     if (rconn) {
       int adj = adjusted.get(Config.connindex);
       int y = baseY + spacing * adj;
-      render(context, client, "IP: " + conn, y, 0xFFFFFFFF);
+      render(graphics, client, "IP: " + conn, y, 0xFFFFFFFF);
     }
     if (rbiome) {
       int adj = adjusted.get(Config.biomeindex);
       int y = baseY + spacing * adj;
-      render(context, client, "Biome: " + biome, y, 0xFFFFFFFF);
+      render(graphics, client, "Biome: " + biome, y, 0xFFFFFFFF);
     }
     if (rfacing) {
       int adj = adjusted.get(Config.facingindex);
       int y = baseY + spacing * adj;
-      render(context, client, "Facing: " + facing, y, 0xFFFFFFFF);
+      render(graphics, client, "Facing: " + facing, y, 0xFFFFFFFF);
     }
   }
 
   public void render(
-      GuiGraphicsExtractor context, Minecraft client, String text, int y, int color) {
+      GuiGraphicsExtractor graphics, Minecraft client, String text, int y, int color) {
     int sliderValue = Config.horizontalpos;
 
     sliderValue = Mth.clamp(sliderValue, 0, 100);
@@ -141,9 +145,11 @@ public class Renderstuff {
 
     // context.drawString(client.font, text, pos, y, color, true);
 
+    //LOGGER.info("{} {} {} {}", Config.enabled, text, pos, y);
+
     if (Config.background) {
-      context.fill(pos - 1, y - 1, pos + textWidth + 1, y + entryHeight, 0x55000000);
+      graphics.fill(pos - 1, y - 1, pos + textWidth + 1, y + entryHeight, 0x55000000);
     }
-    context.text(client.font, text, pos, y, color, true);
+    graphics.text(client.font, text, pos, y, color, true);
   }
 }

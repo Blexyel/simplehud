@@ -4,6 +4,7 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,13 +17,16 @@ import wtf.blexyel.simplehud.config.Config;
 @Mixin(Gui.class)
 public class GuiMixin {
   @Shadow @Final private Minecraft minecraft;
+  @Shadow @Final private GuiRenderState guiRenderState;
 
   @Inject(method = "extractRenderState", at = @At("TAIL"))
-  public void render(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+  public void render(DeltaTracker deltaTracker, boolean shouldRenderLevel, boolean resourcesLoaded,
+      CallbackInfo ci) {
+    GuiGraphicsExtractor graphics = new GuiGraphicsExtractor(minecraft, guiRenderState, 100, 100);
     // If GUI hidden, F3 visible or enabled flag false, dont do shit
-    if (Minecraft.getInstance().options.hideGui
+    if (Minecraft.getInstance().gui.hud.isHidden()
         || !Config.enabled
-        || Minecraft.getInstance().gui.getDebugOverlay().showDebugScreen()) return;
+        || Minecraft.getInstance().gui.hud.getDebugOverlay().showDebugScreen()) return;
     Renderstuff renderstuff = new Renderstuff();
     renderstuff.getEntry(graphics, minecraft);
   }
