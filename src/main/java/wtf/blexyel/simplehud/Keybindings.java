@@ -1,7 +1,7 @@
 package wtf.blexyel.simplehud;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.KeyMapping.Category;
 import net.minecraft.resources.Identifier;
@@ -14,6 +14,6 @@ public class Keybindings {
       new KeyMapping("key.simplehud.enable", InputConstants.Type.KEYSYM, -1, CATEGORY);
 
   public static void init() {
-    KeyMappingRegistry.register(ENABLED_KEY);
+    KeyMappingHelper.registerKeyMapping(ENABLED_KEY);
   }
 }

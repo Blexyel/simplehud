@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.util.Mth;
 import wtf.blexyel.simplehud.config.Config;
 
 public class Renderstuff {
-  public void getEntry(GuiGraphics context, Minecraft client) {
+  public void getEntry(GuiGraphicsExtractor context, Minecraft client) {
     boolean rfps = Config.fps;
     boolean rcoords = Config.coords;
     boolean rchunk = Config.chunk;
@@ -35,8 +35,8 @@ public class Renderstuff {
             coordsx,
             coordsy,
             coordsz);
-    String chunkcoordsx = String.valueOf((int) client.player.chunkPosition().x);
-    String chunkcoordsz = String.valueOf((int) client.player.chunkPosition().z);
+    String chunkcoordsx = String.valueOf((int) client.player.chunkPosition().x());
+    String chunkcoordsz = String.valueOf((int) client.player.chunkPosition().z());
     String chunkcoords =
         String.format(
             Config.chunkcolor ? "Chunk: §c%s §9%s" : "Chunk: %s %s", chunkcoordsx, chunkcoordsz);
@@ -123,7 +123,8 @@ public class Renderstuff {
     }
   }
 
-  public void render(GuiGraphics context, Minecraft client, String text, int y, int color) {
+  public void render(
+      GuiGraphicsExtractor context, Minecraft client, String text, int y, int color) {
     int sliderValue = Config.horizontalpos;
 
     sliderValue = Mth.clamp(sliderValue, 0, 100);
@@ -143,6 +144,6 @@ public class Renderstuff {
     if (Config.background) {
       context.fill(pos - 1, y - 1, pos + textWidth + 1, y + entryHeight, 0x55000000);
     }
-    RenderHelper.drawString(context, client.font, text, pos, y, color, true);
+    context.text(client.font, text, pos, y, color, true);
   }
 }

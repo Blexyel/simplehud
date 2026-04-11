@@ -16,7 +16,7 @@ There's not really anything else to say, except for that you can toggle everythi
 ##### Contributing
 If you are doing development on this mod and you plan to PR at some point, please make sure to test your changes fully before submitting a PR. 
 
-Test all the features and test at least some versions. E.g. test 1.21.8, 1.21.5 and 1.21 on both Fabric and neoforge `gradle :fabric:runClient` `gradle :neoforge:runClient`
+Test all the features
 
 Also before PR'ing run `gradle fmt`, this will run the google Java Format thingi and make the code look not ass.
 

@@ -1,20 +1,22 @@
 package wtf.blexyel.simplehud.config;
 
 import com.google.gson.GsonBuilder;
-import dev.architectury.platform.Platform;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
 
 public class Config {
+  static FabricLoader instance = FabricLoader.getInstance();
+
   public static final ConfigClassHandler<Config> HANDLER =
       ConfigClassHandler.createBuilder(Config.class)
           .id(Identifier.tryParse("simplehud:config"))
           .serializer(
               config ->
                   GsonConfigSerializerBuilder.create(config)
-                      .setPath(Platform.getConfigFolder().resolve("simplehud.json5"))
+                      .setPath(instance.getConfigDir().resolve("simplehud.json5"))
                       .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
                       .setJson5(true)
                       .build())

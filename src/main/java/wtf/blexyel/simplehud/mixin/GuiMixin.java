@@ -3,7 +3,7 @@ package wtf.blexyel.simplehud.mixin;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,13 +17,13 @@ import wtf.blexyel.simplehud.config.Config;
 public class GuiMixin {
   @Shadow @Final private Minecraft minecraft;
 
-  @Inject(method = "render", at = @At("TAIL"))
-  public void render(GuiGraphics drawContext, DeltaTracker tickCounter, CallbackInfo ci) {
+  @Inject(method = "extractRenderState", at = @At("TAIL"))
+  public void render(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker, CallbackInfo ci) {
     // If GUI hidden, F3 visible or enabled flag false, dont do shit
     if (Minecraft.getInstance().options.hideGui
         || !Config.enabled
         || Minecraft.getInstance().gui.getDebugOverlay().showDebugScreen()) return;
     Renderstuff renderstuff = new Renderstuff();
-    renderstuff.getEntry(drawContext, minecraft);
+    renderstuff.getEntry(graphics, minecraft);
   }
 }
