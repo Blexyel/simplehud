@@ -20,7 +20,10 @@ public class GuiMixin {
   @Shadow @Final private GuiRenderState guiRenderState;
 
   @Inject(method = "extractRenderState", at = @At("TAIL"))
-  public void render(DeltaTracker deltaTracker, boolean shouldRenderLevel, boolean resourcesLoaded,
+  public void render(
+      DeltaTracker deltaTracker,
+      boolean shouldRenderLevel,
+      boolean resourcesLoaded,
       CallbackInfo ci) {
     GuiGraphicsExtractor graphics = new GuiGraphicsExtractor(minecraft, guiRenderState, 100, 100);
     // If GUI hidden, F3 visible or enabled flag false, dont do shit

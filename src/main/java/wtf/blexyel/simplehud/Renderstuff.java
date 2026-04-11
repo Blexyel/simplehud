@@ -1,7 +1,5 @@
 package wtf.blexyel.simplehud;
 
-import static wtf.blexyel.simplehud.Simplehud.LOGGER;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,7 +14,7 @@ import wtf.blexyel.simplehud.config.Config;
 
 public class Renderstuff {
   public void getEntry(GuiGraphicsExtractor graphics, Minecraft client) {
-    //LOGGER.info(String.valueOf(client.player));
+    // LOGGER.info(String.valueOf(client.player));
     if (client.player == null) return;
     boolean rfps = Config.fps;
     boolean rcoords = Config.coords;
@@ -145,7 +143,7 @@ public class Renderstuff {
 
     // context.drawString(client.font, text, pos, y, color, true);
 
-    //LOGGER.info("{} {} {} {}", Config.enabled, text, pos, y);
+    // LOGGER.info("{} {} {} {}", Config.enabled, text, pos, y);
 
     if (Config.background) {
       graphics.fill(pos - 1, y - 1, pos + textWidth + 1, y + entryHeight, 0x55000000);
