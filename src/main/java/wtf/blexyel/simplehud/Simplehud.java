@@ -17,7 +17,7 @@ public final class Simplehud implements ModInitializer {
     LOGGER.info("Simple HUD is alive!!");
 
     Config.HANDLER.load();
-    boolean keybindingsLoaded = false;
+    Keybindings.init();
 
     ClientLifecycleEvents.CLIENT_STARTED.register(
         (minecraft) -> {
