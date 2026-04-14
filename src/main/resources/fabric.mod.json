@@ -17,6 +17,9 @@
     "main": [
       "wtf.blexyel.simplehud.Simplehud"
     ],
+    "client": [
+      "wtf.blexyel.simplehud.SimplehudClient"
+    ],
     "modmenu": [
       "wtf.blexyel.simplehud.ModMenu"
     ]

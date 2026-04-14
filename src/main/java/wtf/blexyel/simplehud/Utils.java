@@ -3,6 +3,8 @@ package wtf.blexyel.simplehud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.core.BlockPos;
+import wtf.blexyel.simplehud.network.SSUPayloadReceiver;
+import wtf.blexyel.simplehud.network.TpsPayloadReceiver;
 
 public class Utils {
 
@@ -37,6 +39,11 @@ public class Utils {
 
   // do this at some point (possibly with server integration (aka. packets))
   public static float getTPS(Minecraft client) {
+    double tpsServer = TpsPayloadReceiver.tps();
+    SSUPayloadReceiver.supported();
+    if (SSUPayloadReceiver.supported) {
+      return (float) tpsServer;
+    }
     if (client != null && client.level != null) {
       return (float) Math.round(TpsCalc.getTps() * 100) / 100;
     }
