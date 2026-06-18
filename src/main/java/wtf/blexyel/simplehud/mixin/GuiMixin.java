@@ -29,7 +29,9 @@ public class GuiMixin {
     // If GUI hidden, F3 visible or enabled flag false, dont do shit
     if (Minecraft.getInstance().gui.hud.isHidden()
         || !Config.enabled
-        || Minecraft.getInstance().gui.hud.getDebugOverlay().showDebugScreen()) return;
+        || Minecraft.getInstance().gui.hud.getDebugOverlay().showDebugScreen()
+        || (Minecraft.getInstance().gui.screen() != null
+            && Minecraft.getInstance().gui.screen().isPauseScreen())) return;
     Renderstuff renderstuff = new Renderstuff();
     renderstuff.getEntry(graphics, minecraft);
   }
